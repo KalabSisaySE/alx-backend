@@ -36,7 +36,10 @@ class Server:
         for num in [page, page_size]:
             assert isinstance(num, int) and num > 0
         indexes = index_range(page=page, page_size=page_size)
-        if len(data_set) >= indexes[1]:
+        len_ds = len(data_set)
+        if len_ds >= indexes[1]:
             return [data_set[index] for index in range(indexes[0], indexes[1])]
+        elif len_ds >= indexes[0] and len_ds < indexes[1]:
+            return [data_set[index] for index in range(indexes[0], len_ds)]
 
         return []
