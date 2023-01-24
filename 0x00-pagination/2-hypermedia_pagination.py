@@ -4,7 +4,7 @@ defines the function `index_range` and the class `Server`
 """
 import csv
 import math
-from typing import List, Tuple
+from typing import List, Tuple, Dict
 
 
 def index_range(page: int, page_size: int) -> Tuple[int, int]:
@@ -47,15 +47,16 @@ class Server:
 
         return []
 
-    def get_hyper(self, page: int = 1, page_size: int = 10) -> List[List]:
+    def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict:
         """returns a dict of page info based on `page` and `page_size`"""
         data_set = self.dataset()
         current_dataset = self.get_page(page=page, page_size=page_size)
         prev_pg = None
         next_pg = None
-        if len(current_dataset) > 0:
+        total_pgs = math.ceil(len(data_set) / page_size)
+        if page < total_pgs:
             next_pg = page + 1
-        if page - 1 > 0:
+        if page > 1:
             prev_pg = page - 1
         return {
             "page_size": len(current_dataset),
@@ -63,5 +64,5 @@ class Server:
             "data": current_dataset,
             "next_page": next_pg,
             "prev_size": prev_pg,
-            "total_pages": math.ceil(len(data_set) / page_size),
+            "total_pages": total_pgs,
         }
