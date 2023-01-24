@@ -14,11 +14,12 @@ class Server:
     DATA_FILE = "Popular_Baby_Names.csv"
 
     def __init__(self):
+        """instantiates a new `Server` object"""
         self.__dataset = None
         self.__indexed_dataset = None
 
     def dataset(self) -> List[List]:
-        """Cached dataset
+        """returns the cached dataset
         """
         if self.__dataset is None:
             with open(self.DATA_FILE) as f:
@@ -41,7 +42,7 @@ class Server:
 
     def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
         """paginate based on `index`, `page_size` and
-            the current state of the dataset (deletion reslilience)"""
+        the current state of the dataset (deletion reslilience)"""
         idx_ds = self.indexed_dataset()
         if type(index) is int:
             assert index < len(idx_ds)
