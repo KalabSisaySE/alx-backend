@@ -33,7 +33,7 @@ class Server:
         return self.__dataset
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
-        """returns the dataset of the current page 
+        """returns the dataset of the current page
         if `page` and `page_size` are valid"""
         data_set = self.dataset()
         for num in [page, page_size]:
