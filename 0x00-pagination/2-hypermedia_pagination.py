@@ -33,7 +33,7 @@ class Server:
         return self.__dataset
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
-        """returns the dataset of the current page 
+        """returns the dataset of the current page
         if `page` and `page_size` are valid"""
         data_set = self.dataset()
         for num in [page, page_size]:
@@ -56,7 +56,7 @@ class Server:
             "page_size": len(current_dataset),
             "page": page,
             "data": current_dataset,
-            "next_page": (page + 1) if (current_dataset != []) else None,
-            "prev_size": (page - 1) if (page - 1 > 0) else None,
+            "next_page": page + 1 if current_dataset != [] else None,
+            "prev_size": page - 1 if page - 1 > 0 else None,
             "total_pages": math.ceil(len(data_set) / page_size),
         }
