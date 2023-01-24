@@ -51,12 +51,17 @@ class Server:
         """returns a dict of page info based on `page` and `page_size`"""
         data_set = self.dataset()
         current_dataset = self.get_page(page=page, page_size=page_size)
-
+        prev_pg = None
+        next_pg = None
+        if current_dataset != []:
+            next_pg = page + 1
+        if page - 1 > 0:
+            prev_pg = page - 1
         return {
             "page_size": len(current_dataset),
             "page": page,
             "data": current_dataset,
-            "next_page": page + 1 if current_dataset != [] else None,
-            "prev_size": page - 1 if page - 1 > 0 else None,
+            "next_page": next_pg,
+            "prev_size": prev_pg,
             "total_pages": math.ceil(len(data_set) / page_size),
         }
