@@ -1,6 +1,6 @@
 # 0x01. Caching
 
-**Parent class `BaseCaching`**
+**Parent class [BaseCaching](./base_caching.py)**
 
 All your classes must inherit from `BaseCaching` defined below:
 
